@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Production build outputs
+dist/
+build/
+release/
+
+# Temporary / logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment and secrets
+.env
+.env.local
+.env.*.local
+!.env.example
+*.secret
+*.token
+*.pat
+*.pem
+*.key
+*.pfx
+*.p12
+credentials.json
+client_secret*.json
+personal/
+private/
+
+# OS and Editor artifacts
+.DS_Store
+Thumbs.db
+*.tmp
+*.temp
+.vscode/
+.idea/

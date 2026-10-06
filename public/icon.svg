@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#001e36" />
+      <stop offset="100%" stop-color="#000e1b" />
+    </linearGradient>
+    <linearGradient id="psGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#31A8FF" />
+      <stop offset="100%" stop-color="#0066CC" />
+    </linearGradient>
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#059669" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.4" />
+    </filter>
+  </defs>
+
+  <!-- Background Card -->
+  <rect width="512" height="512" rx="110" fill="url(#bgGrad)" />
+  <rect x="12" y="12" width="488" height="488" rx="98" fill="none" stroke="#31A8FF" stroke-width="4" stroke-opacity="0.35" />
+
+  <!-- Photoshop Icon Symbol -->
+  <g filter="url(#shadow)">
+    <!-- Main Ps Box -->
+    <rect x="76" y="86" width="360" height="250" rx="36" fill="#00182b" stroke="#31A8FF" stroke-width="6" />
+    
+    <!-- "Ps" Logo text -->
+    <text x="145" y="255" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="140" font-weight="900" fill="#31A8FF">Ps</text>
+    
+    <!-- Korean / English Toggle Tag -->
+    <g transform="translate(270, 140)">
+      <rect width="135" height="50" rx="25" fill="#1e293b" stroke="#60a5fa" stroke-width="2" />
+      <text x="67" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="700" fill="#ffffff" text-anchor="middle">한 / EN</text>
+    </g>
+    
+    <!-- Refresh / Switch Indicator -->
+    <path d="M 335 210 L 350 230 L 320 230 Z" fill="#60a5fa" />
+    <path d="M 340 220 A 24 24 0 0 1 364 244" fill="none" stroke="#60a5fa" stroke-width="4" stroke-linecap="round" />
+    <path d="M 364 244 A 24 24 0 0 1 340 268" fill="none" stroke="#60a5fa" stroke-width="4" stroke-linecap="round" stroke-dasharray="4 4" />
+  </g>
+
+  <!-- Bottom Desktop App / Tool Badge -->
+  <g transform="translate(76, 370)">
+    <rect width="360" height="70" rx="20" fill="url(#psGrad)" />
+    <text x="180" y="44" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="1">DESKTOP APP GENERATOR</text>
+  </g>
+</svg>

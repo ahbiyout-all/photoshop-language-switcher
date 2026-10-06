@@ -1,0 +1,6 @@
+{
+  "name": "포토샵 & 일러스트레이터 언어 변경기",
+  "description": "포토샵(tw10428 .dat) 및 일러스트레이터(AMT application.xml) 다중 버전을 자동 감지하고 원클릭으로 한글/영어를 전환하는 도구 - 개발자: AhBiYout",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

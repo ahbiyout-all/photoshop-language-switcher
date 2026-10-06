@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // AI Studio iframe environment: HMR is disabled, ignore Vite WebSocket/send errors
+      window.addEventListener('error', function (event) {
+        if (
+          event.message &&
+          (event.message.includes("reading 'send'") ||
+            event.message.includes('WebSocket') ||
+            event.message.includes('[vite]'))
+        ) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        }
+      });
+      window.addEventListener('unhandledrejection', function (event) {
+        var reasonStr = event.reason ? String(event.reason) : '';
+        if (
+          reasonStr.includes("reading 'send'") ||
+          reasonStr.includes('WebSocket') ||
+          reasonStr.includes('[vite]')
+        ) {
+          event.preventDefault();
+          event.stopImmediatePropagation();
+        }
+      });
+    </script>
+    <title>포토샵 &amp; 일러스트레이터 언어 변경기</title>
+    <meta name="author" content="AhBiYout" />
+    <meta name="description" content="포토샵(tw10428 .dat) 및 일러스트레이터(AMT application.xml) 다중 버전을 자동 감지하고 원클릭으로 한글/영어를 전환하는 도구 - 개발자: AhBiYout" />
+    <meta property="og:title" content="포토샵 & 일러스트레이터 언어 변경기" />
+    <meta property="og:description" content="포토샵(tw10428 .dat) 및 일러스트레이터(AMT application.xml) 다중 버전을 자동 감지하고 원클릭으로 한글/영어를 전환하는 도구 - 개발자: AhBiYout" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#0f172a" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Ps언어변경기" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/pwa-192x192.png" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
