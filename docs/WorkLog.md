@@ -9,6 +9,25 @@
 
 ## 작업 이력 및 마일스톤 (Milestone History)
 
+### [2026-10-06] 마일스톤 35: v2.13.0 - 생성되는 모든 원클릭 .EXE/.bat 파일명에 버전별 해당 연도(Year) 숫자 자동 부여 체계 구축
+- **분류:** MINOR
+- **작업 내용:**
+  1. 원클릭 실행기 및 배치 파일명에 연도(Year) 숫자 자동 결합:
+     - `resolveVersionYear` 헬퍼 함수를 신설하여 사용자가 선택한 버전의 연도(2026, 2025, 2024, 2023 등)를 정확히 추출.
+     - 간편 모드(Easy Mode):
+       - .EXE: `Photoshop_2026_Language_Switcher_Toggle.exe`, `Build_Photoshop_2026_Language_Switcher_Toggle_EXE.bat`
+       - .bat: `Photoshop_2026_Language_Switcher_Toggle.bat`, `Photoshop_2026_Language_Switcher_English.bat` 등
+       - Illustrator: `Illustrator_2026_Language_Switcher_Toggle.exe` 및 `.bat`
+     - 스크립트 생성기(Script Generator):
+       - `photoshop_2026_toggle_language.bat`, `create_photoshop_2026_desktop_shortcut.bat`, `build_photoshop_2026_toggle_exe.bat`, `Photoshop_2026_Language_Switcher_GUI.hta`, `photoshop_2026_toggle.ps1` 등
+       - 전체 툴킷 일괄 다운로드 파일명 세트에도 연도 숫자 동기화.
+     - 확장 앱 제품군 및 배포 ZIP 번들(`zipDistributor.ts`):
+       - `Photoshop_2026_Language_Switcher_v2.13.0_Distribution_Suite.zip` 및 압축 파일 내부 스크립트 전반에 연도 식별자 반영.
+  2. UI 실시간 미리보기 팁 연동:
+     - 간편 모드 실행기 다운로드 안내 패널에서 선택된 버전 연도가 반영된 실제 파일명을 실시간 안내 코드로 표기.
+  3. 전역 빌드 스크립트 및 버전 동기화:
+     - `package.json`, `src/version.ts`, `docs/PATCH_NOTES.md`, `docs/WorkLog.md` 버전을 `v2.13.0`으로 갱신.
+
 ### [2026-10-06] 마일스톤 34: v2.12.3 - github_setup.bat 최초 실행 시 ".은(는) 예상되지 않았습니다" 구문 오류 수정 및 선형 파싱 구조화
 - **분류:** PATCH
 - **작업 내용:**

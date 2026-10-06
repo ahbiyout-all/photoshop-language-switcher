@@ -7,10 +7,10 @@
  * - PATCH (0.0.X): Bug fixes, UI detail refinements, automated build scripts, docs
  */
 
-export const APP_VERSION = '2.12.3';
+export const APP_VERSION = '2.13.0';
 export const APP_VERSION_FULL = `v${APP_VERSION}`;
 export const APP_BUILD_DATE = '2026-10-06';
-export const APP_CODENAME = 'GitHub Setup First-Run Batch Syntax Fix & Robust Linear Parser';
+export const APP_CODENAME = 'One-Click Release Year File Naming Architecture';
 export const APP_ORGANIZATION = 'cisnet.co.kr';
 export const APP_ORGANIZATION_URL = 'https://www.cisnet.co.kr';
 export const APP_AUTHOR = 'AhBiYout';

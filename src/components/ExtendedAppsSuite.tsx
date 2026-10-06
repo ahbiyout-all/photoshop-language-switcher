@@ -67,7 +67,7 @@ export const ExtendedAppsSuite: React.FC = () => {
 
   // Dynamic Filename
   const scriptFilename = useMemo(() => {
-    const prefix = selectedAppId === 'all' ? 'adobe_extended_all' : selectedAppId;
+    const prefix = selectedAppId === 'all' ? 'adobe_extended_all_2026' : `${selectedAppId}_2026`;
     const modeSuffix =
       scriptMode === 'toggle'
         ? `toggle_${targetLocale}`

@@ -30,6 +30,7 @@ import {
   PHOTOSHOP_VERSIONS,
   resolveFolderPath,
   resolveDatFileName,
+  resolveVersionYear,
   generateSmartToggleBat,
   generateToEnglishBat,
   generateToKoreanBat,
@@ -315,9 +316,11 @@ export const EasyModeView: React.FC<EasyModeViewProps> = ({
   // Download 1-Click Executable Builder
   const handleDownloadExe = () => {
     let scriptContent = '';
+    const year = resolveVersionYear(config);
+    const actionSuffix = targetAction === 'toggle' ? 'Toggle' : targetAction === 'english' ? 'English' : 'Korean';
     const filename = isIllustrator
-      ? `Illustrator_Language_Switcher_${config.versionId}`
-      : `Photoshop_Language_Switcher_${config.versionId}`;
+      ? `Illustrator_${year}_Language_Switcher_${actionSuffix}`
+      : `Photoshop_${year}_Language_Switcher_${actionSuffix}`;
 
     if (isIllustrator) {
       if (targetAction === 'english') {
@@ -338,8 +341,8 @@ export const EasyModeView: React.FC<EasyModeViewProps> = ({
     }
 
     downloadAutoExeCompilerFile(scriptContent, filename, {
-      title: `${isIllustrator ? 'Illustrator' : 'Photoshop'} Language Switcher`,
-      description: `One-Click Language Switcher for ${isIllustrator ? 'Adobe Illustrator' : 'Adobe Photoshop'} (${currentLocalePreset.name})`,
+      title: `${isIllustrator ? 'Illustrator' : 'Photoshop'} ${year} Language Switcher`,
+      description: `One-Click Language Switcher for ${isIllustrator ? 'Adobe Illustrator' : 'Adobe Photoshop'} ${year} (${currentLocalePreset.name})`,
       informationalVersion: APP_VERSION_FULL,
     });
   };
@@ -347,9 +350,11 @@ export const EasyModeView: React.FC<EasyModeViewProps> = ({
   // Download Simple BAT
   const handleDownloadBat = () => {
     let scriptContent = '';
+    const year = resolveVersionYear(config);
+    const actionSuffix = targetAction === 'toggle' ? 'Toggle' : targetAction === 'english' ? 'English' : 'Korean';
     const filename = isIllustrator
-      ? `Illustrator_Language_Switcher_${targetAction}.bat`
-      : `Photoshop_Language_Switcher_${targetAction}.bat`;
+      ? `Illustrator_${year}_Language_Switcher_${actionSuffix}.bat`
+      : `Photoshop_${year}_Language_Switcher_${actionSuffix}.bat`;
 
     if (isIllustrator) {
       if (targetAction === 'english') {
@@ -1046,7 +1051,7 @@ export const EasyModeView: React.FC<EasyModeViewProps> = ({
                 </div>
 
                 <div className="p-4 rounded-xl bg-emerald-50/60 border border-emerald-200/80 text-xs text-emerald-950 leading-relaxed">
-                  <strong>💡 사용 방법:</strong> 다운로드된 <code>Build_..._EXE.bat</code> 파일을 실행하면, Windows 기본 C# 컴파일러가 시스템에 완전히 독립된 <strong>64비트 정품 .exe 실행 파일</strong>을 즉시 만들어 줍니다. 생성된 .exe를 더블클릭하여 사용하세요!
+                  <strong>💡 사용 방법:</strong> 다운로드된 <code>Build_{isIllustrator ? 'Illustrator' : 'Photoshop'}_{resolveVersionYear(config)}_Language_Switcher_{targetAction === 'toggle' ? 'Toggle' : targetAction === 'english' ? 'English' : 'Korean'}_EXE.bat</code> 파일을 실행하면, Windows 기본 C# 컴파일러가 시스템에 완전히 독립된 <strong>64비트 정품 .exe 실행 파일 ({isIllustrator ? 'Illustrator' : 'Photoshop'}_{resolveVersionYear(config)}_Language_Switcher_{targetAction === 'toggle' ? 'Toggle' : targetAction === 'english' ? 'English' : 'Korean'}.exe)</strong>을 즉시 만들어 줍니다. 생성된 .exe를 더블클릭하여 사용하세요!
                 </div>
               </div>
             )}
@@ -1078,7 +1083,7 @@ export const EasyModeView: React.FC<EasyModeViewProps> = ({
                 </div>
 
                 <div className="p-4 rounded-xl bg-purple-50/60 border border-purple-200/80 text-xs text-purple-950 leading-relaxed">
-                  <strong>💡 사용 방법:</strong> 다운로드된 <code>.bat</code> 파일에 마우스 우클릭 후 <strong>[관리자 권한으로 실행]</strong>을 선택하시면 1초 만에 언어가 적용됩니다.
+                  <strong>💡 사용 방법:</strong> 다운로드된 <code>{isIllustrator ? 'Illustrator' : 'Photoshop'}_{resolveVersionYear(config)}_Language_Switcher_{targetAction === 'toggle' ? 'Toggle' : targetAction === 'english' ? 'English' : 'Korean'}.bat</code> 파일에 마우스 우클릭 후 <strong>[관리자 권한으로 실행]</strong>을 선택하시면 1초 만에 언어가 적용됩니다.
                 </div>
               </div>
             )}

@@ -156,6 +156,28 @@ export function resolveDatFileName(config: PathConfig): string {
 }
 
 /**
+ * Resolves the numeric release year (or CS6) for the configured Photoshop or Illustrator version.
+ * Appended to generated one-click .exe and .bat file names to avoid version confusion.
+ */
+export function resolveVersionYear(config: PathConfig): string {
+  if (config.appType === 'illustrator') {
+    const aiVer = ILLUSTRATOR_VERSIONS.find((v) => v.id === config.versionId);
+    if (aiVer) return String(aiVer.year);
+  } else {
+    const psVer = PHOTOSHOP_VERSIONS.find((v) => v.id === config.versionId);
+    if (psVer) return String(psVer.year);
+  }
+
+  // Scan customPath or versionId for 4-digit year or CS6
+  const textToScan = `${config.customPath || ''} ${config.versionId || ''}`;
+  const yearMatch = textToScan.match(/\b(20\d\d)\b/i);
+  if (yearMatch) return yearMatch[1];
+  if (/cs6/i.test(textToScan)) return 'CS6';
+
+  return '2026';
+}
+
+/**
  * Returns the "old_" renamed file name for English mode
  */
 export function getOldDatFileName(fileName: string): string {

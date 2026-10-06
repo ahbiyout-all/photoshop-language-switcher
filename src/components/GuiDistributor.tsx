@@ -10,7 +10,7 @@ import {
   Monitor,
 } from 'lucide-react';
 import { PathConfig } from '../types';
-import { resolveFolderPath, resolveDatFileName, downloadTextFile } from '../utils/photoshopHelper';
+import { resolveFolderPath, resolveDatFileName, resolveVersionYear, downloadTextFile } from '../utils/photoshopHelper';
 import { generateWindowsHtaApp, generatePowerShellWpfApp } from '../utils/photoshopHelper';
 import { downloadReleaseDistributionZip } from '../utils/zipDistributor';
 import { APP_VERSION_FULL } from '../version';
@@ -33,15 +33,17 @@ export const GuiDistributor: React.FC<GuiDistributorProps> = ({ config }) => {
   const htaCode = generateWindowsHtaApp(folderPath, datFile);
   const wpfCode = generatePowerShellWpfApp(folderPath, datFile);
 
+  const year = resolveVersionYear(config);
+
   const handleDownloadHta = () => {
-    downloadTextFile(htaCode, 'Photoshop_Language_Switcher_GUI.hta', {
+    downloadTextFile(htaCode, `Photoshop_${year}_Language_Switcher_GUI.hta`, {
       isWindowsCrlf: true,
       withBom: true,
     });
   };
 
   const handleDownloadWpf = () => {
-    downloadTextFile(wpfCode, 'Photoshop_Switcher_WPF_GUI.ps1', {
+    downloadTextFile(wpfCode, `Photoshop_${year}_Switcher_WPF_GUI.ps1`, {
       isWindowsCrlf: true,
       withBom: true,
     });

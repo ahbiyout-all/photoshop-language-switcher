@@ -68,7 +68,7 @@ export const ClassroomRemoteDeployer: React.FC = () => {
 
   // Dynamic Filename
   const filename = React.useMemo(() => {
-    const appPrefix = targetApp === 'both' ? 'adobe_all' : targetApp;
+    const appPrefix = targetApp === 'both' ? 'adobe_all_2026' : `${targetApp}_2026`;
     const modeSuffix =
       deployMode === 'to_en'
         ? 'en_US'

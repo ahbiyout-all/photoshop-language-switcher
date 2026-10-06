@@ -16,6 +16,33 @@
 
 ## 📋 버전 릴리스 로그
 
+### [v2.13.0] - 2026-10-06
+> **변경 분류: MINOR (생성되는 모든 원클릭 .EXE/.bat 파일명에 버전별 해당 연도(Year) 숫자 자동 부여 체계 구축)**
+
+#### 🚀 변경 요약 & 연도 숫자 명시적 파일명 체계 전면 도입
+1. **생성 파일명에 대상 버전 연도(Year) 숫자 자동 결합**:
+   - 사용자가 선택한 Adobe 제품군(Photoshop 또는 Illustrator)의 버전 연도(2026, 2025, 2024, 2023, 2022, 2021, 2020 등)를 자동으로 추출하여 생성되는 모든 원클릭 실행 파일(.exe) 및 배치 스크립트(.bat)의 파일명에 명확히 표기하도록 전면 개선:
+     - **간편 모드 (Easy Mode) 원클릭 .EXE 생성기**:
+       - 기존: `Photoshop_Language_Switcher_ps2026` ➔ 변경: `Photoshop_2026_Language_Switcher_Toggle.exe` (토글), `Photoshop_2026_Language_Switcher_English.exe` (영어), `Photoshop_2026_Language_Switcher_Korean.exe` (한국어)
+       - Illustrator: `Illustrator_2026_Language_Switcher_Toggle.exe` 등으로 통일
+       - 컴파일러 스크립트: `Build_Photoshop_2026_Language_Switcher_Toggle_EXE.bat`
+     - **간편 모드 (Easy Mode) 배치 스크립트 (.bat)**:
+       - 기존: `Photoshop_Language_Switcher_toggle.bat` ➔ 변경: `Photoshop_2026_Language_Switcher_Toggle.bat`
+       - 복구/변경: `Photoshop_2026_Language_Switcher_English.bat`, `Photoshop_2026_Language_Switcher_Korean.bat`
+       - Illustrator: `Illustrator_2026_Language_Switcher_Toggle.bat` 등
+     - **전문가 스크립트 생성기 (Script Generator)**:
+       - `photoshop_2026_toggle_language.bat`, `create_photoshop_2026_desktop_shortcut.bat`, `build_photoshop_2026_toggle_exe.bat`, `photoshop_2026_switch_to_english.bat`, `photoshop_2026_switch_to_korean.bat`, `Photoshop_2026_Language_Switcher_GUI.hta`, `photoshop_2026_toggle.ps1`
+       - Illustrator: `illustrator_2026_toggle_language.bat`, `create_illustrator_2026_desktop_shortcut.bat` 등
+       - 전체 툴킷 일괄 다운로드 시에도 연도 숫자가 붙은 정돈된 파일명 세트로 순차 다운로드.
+     - **확장 어도비 제품군 및 무인 배포기**:
+       - InDesign, After Effects, Premiere Pro, Audition 및 교실/학원 무인 배포기에도 `_2026_` 연도 식별자 적용.
+     - **GUI 배포 ZIP 패키지 (`zipDistributor.ts`)**:
+       - `Photoshop_2026_Language_Switcher_v2.13.0_Distribution_Suite.zip` 및 압축 파일 내부 스크립트 전부에 연도 숫자 동기화.
+2. **UI 안내 문구 실시간 미리보기 연동**:
+   - 간편 모드 실행기 다운로드 안내 패널에서 선택된 버전과 액션에 따른 정확한 파일명(`Build_Photoshop_2026_Language_Switcher_Toggle_EXE.bat`, `.exe`, `.bat`)이 동적으로 표시되도록 안내 개선.
+
+---
+
 ### [v2.12.3] - 2026-10-06
 > **변경 분류: PATCH (github_setup.bat 최초 실행 시 ".은(는) 예상되지 않았습니다" 구문 오류 수정 및 선형 흐름 구조 개편)**
 

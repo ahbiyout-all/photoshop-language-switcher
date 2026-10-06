@@ -25,6 +25,9 @@ export async function downloadReleaseDistributionZip(
 ): Promise<void> {
   const zip = new JSZip();
 
+  const yearMatch = folderPath.match(/\b(20\d\d)\b/);
+  const year = yearMatch ? yearMatch[1] : '2026';
+
   const htaContent = generateWindowsHtaApp(folderPath, fileName);
   const wpfContent = generatePowerShellWpfApp(folderPath, fileName);
   const toggleBat = generateSmartToggleBat(folderPath, fileName);
@@ -52,20 +55,20 @@ export async function downloadReleaseDistributionZip(
   };
 
   // 1. Root-level Main GUI Application (with multi-version auto-detection)
-  zip.file('Photoshop_Language_Switcher_GUI.hta', encodeWindowsText(htaContent, true));
+  zip.file(`Photoshop_${year}_Language_Switcher_GUI.hta`, encodeWindowsText(htaContent, true));
 
   // 2. PowerShell Modern GUI Application
-  zip.file('Photoshop_Switcher_WPF_GUI.ps1', encodeWindowsText(wpfContent, true));
+  zip.file(`Photoshop_${year}_Switcher_WPF_GUI.ps1`, encodeWindowsText(wpfContent, true));
 
   // 3. Quick Run Batch Scripts
   const scriptsFolder = zip.folder('scripts');
   if (scriptsFolder) {
     scriptsFolder.file('photoshop_multi_version_auto_scanner.bat', encodeWindowsText(autoDetectBat, true));
-    scriptsFolder.file('photoshop_toggle_language.bat', encodeWindowsText(toggleBat, true));
-    scriptsFolder.file('photoshop_switch_to_english.bat', encodeWindowsText(toEngBat, true));
-    scriptsFolder.file('photoshop_switch_to_korean.bat', encodeWindowsText(toKorBat, true));
-    scriptsFolder.file('create_desktop_shortcut.bat', encodeWindowsText(shortcutBat, true));
-    scriptsFolder.file('build_photoshop_toggle_exe.bat', encodeWindowsText(exeBuilderBat, true));
+    scriptsFolder.file(`photoshop_${year}_toggle_language.bat`, encodeWindowsText(toggleBat, true));
+    scriptsFolder.file(`photoshop_${year}_switch_to_english.bat`, encodeWindowsText(toEngBat, true));
+    scriptsFolder.file(`photoshop_${year}_switch_to_korean.bat`, encodeWindowsText(toKorBat, true));
+    scriptsFolder.file(`create_photoshop_${year}_desktop_shortcut.bat`, encodeWindowsText(shortcutBat, true));
+    scriptsFolder.file(`build_photoshop_${year}_toggle_exe.bat`, encodeWindowsText(exeBuilderBat, true));
   }
 
   // 4. Distribution Readme & User Guide
@@ -81,7 +84,7 @@ export async function downloadReleaseDistributionZip(
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement('a');
   anchor.href = url;
-  anchor.download = `Photoshop_Language_Switcher_${versionTag}_Distribution_Suite.zip`;
+  anchor.download = `Photoshop_${year}_Language_Switcher_${versionTag}_Distribution_Suite.zip`;
   document.body.appendChild(anchor);
   anchor.click();
   document.body.removeChild(anchor);

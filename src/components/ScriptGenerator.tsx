@@ -29,6 +29,7 @@ import { BATCH_ERROR_LEVELS } from '../types/errorLevels';
 import {
   resolveFolderPath,
   resolveDatFileName,
+  resolveVersionYear,
   generateToEnglishBat,
   generateToKoreanBat,
   generateSmartToggleBat,
@@ -302,6 +303,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
 
   const folderPath = resolveFolderPath(config);
   const datFile = resolveDatFileName(config);
+  const versionYear = resolveVersionYear(config);
 
   const getScriptContentAndFilename = () => {
     if (isIllustrator) {
@@ -317,7 +319,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
         case 'toggle_bat':
           return {
             content: generateIllustratorSmartToggleBat(folderPath, datFile || 'application.xml', config.locale || 'ko_KR'),
-            filename: 'illustrator_toggle_language.bat',
+            filename: `illustrator_${versionYear}_toggle_language.bat`,
             label: `일러스트레이터 스마트 자동 토글 배치 스크립트 (.bat) [${currentLocalePreset.name}]`,
             badge: '가장 안전 (추천)',
             desc: `Illustrator Support Files\\Contents\\Windows\\AMT\\application.xml 파일 내 언어 설정을 ${currentLocalePreset.code} ⇄ en_US로 상호 전환합니다.`,
@@ -325,7 +327,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
         case 'desktop_shortcut':
           return {
             content: generateIllustratorShortcutBat(folderPath, datFile || 'application.xml', config.locale || 'ko_KR'),
-            filename: 'create_illustrator_desktop_shortcut.bat',
+            filename: `create_illustrator_${versionYear}_desktop_shortcut.bat`,
             label: `일러스트레이터 바탕화면 바로가기 아이콘 생성기 (.bat) [${currentLocalePreset.name}]`,
             badge: '원클릭 바로가기',
             desc: `바탕화면에 "Illustrator ${currentLocalePreset.name}/영어 토글" 전용 바로가기(.lnk) 아이콘을 생성하고 본체 스크립트를 안전하게 보관합니다.`,
@@ -333,7 +335,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
         case 'english_bat':
           return {
             content: generateIllustratorToEnglishBat(folderPath, datFile || 'application.xml', config.locale || 'ko_KR'),
-            filename: 'illustrator_switch_to_english.bat',
+            filename: `illustrator_${versionYear}_switch_to_english.bat`,
             label: '일러스트레이터 영어로 변경 배치 스크립트 (.bat)',
             badge: '영어 전용',
             desc: 'application.xml의 installedLanguages 값을 en_US(영문)로 설정합니다.',
@@ -341,7 +343,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
         case 'korean_bat':
           return {
             content: generateIllustratorToKoreanBat(folderPath, datFile || 'application.xml', config.locale || 'ko_KR'),
-            filename: `illustrator_switch_to_${currentLocalePreset.code.toLowerCase()}.bat`,
+            filename: `illustrator_${versionYear}_switch_to_${currentLocalePreset.code.toLowerCase()}.bat`,
             label: `일러스트레이터 ${currentLocalePreset.name}로 복구 배치 스크립트 (.bat)`,
             badge: `${currentLocalePreset.name} 복구`,
             desc: `application.xml의 installedLanguages 값을 ${currentLocalePreset.code}(${currentLocalePreset.name})로 복원합니다.`,
@@ -349,7 +351,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
         case 'powershell':
           return {
             content: generateIllustratorPowerShellScript(folderPath, datFile || 'application.xml', config.locale || 'ko_KR'),
-            filename: 'illustrator_toggle.ps1',
+            filename: `illustrator_${versionYear}_toggle.ps1`,
             label: `일러스트레이터 파워셸 스크립트 (.ps1) [${currentLocalePreset.name}]`,
             badge: 'PowerShell',
             desc: '현대적인 Windows PowerShell 터미널 환경을 위한 표준 관리 스크립트입니다.',
@@ -362,7 +364,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
         default:
           return {
             content: generateIllustratorSmartToggleBat(folderPath),
-            filename: 'illustrator_toggle_language.bat',
+            filename: `illustrator_${versionYear}_toggle_language.bat`,
             label: '일러스트레이터 스마트 자동 토글 배치 스크립트 (.bat)',
             badge: '가장 안전 (추천)',
             desc: 'Illustrator Support Files\\Contents\\Windows\\AMT\\application.xml 파일 내 언어 설정을 ko_KR ⇄ en_US로 상호 전환합니다.',
@@ -382,7 +384,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
       case 'universal_multi_lang':
         return {
           content: generateUniversalMultiLangBat(),
-          filename: 'photoshop_universal_multilang_switcher.bat',
+          filename: `photoshop_${versionYear}_universal_multilang_switcher.bat`,
           label: '포토샵 전세계 다국어 통합 자동 스위처 (.bat)',
           badge: '🌐 전세계 24개국 지원',
           desc: '한국어뿐만 아니라 일본어, 중국어, 독일어, 프랑스어, 스페인어 등 시스템에 설치된 모든 언어팩을 자동 감지하여 1-Click 전환합니다.',
@@ -390,7 +392,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
       case 'toggle_bat':
         return {
           content: generateSmartToggleBat(folderPath, datFile),
-          filename: 'photoshop_toggle_language.bat',
+          filename: `photoshop_${versionYear}_toggle_language.bat`,
           label: `스마트 자동 토글 배치 스크립트 (${currentLocalePreset.name} ⇄ 영어) (.bat)`,
           badge: '가장 안전 (추천)',
           desc: `Windows 순수 내장 명령어 구성으로 백신 오진율 0%! 더블클릭 시 UAC 권한 승인 후 ${currentLocalePreset.name}/영어를 자동 전환합니다.`,
@@ -398,7 +400,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
       case 'desktop_shortcut':
         return {
           content: generateDesktopShortcutBat(folderPath, datFile),
-          filename: 'create_desktop_shortcut.bat',
+          filename: `create_photoshop_${versionYear}_desktop_shortcut.bat`,
           label: '바탕화면 바로가기 아이콘 생성기 (.bat)',
           badge: '원클릭 바로가기',
           desc: `바탕화면에 "포토샵 ${currentLocalePreset.name}/영어 전환" 전용 바로가기(.lnk) 아이콘을 생성하고 본체 스크립트를 안전하게 보관합니다.`,
@@ -406,7 +408,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
       case 'exe_builder':
         return {
           content: generateExeBuilderBat(folderPath, datFile),
-          filename: 'build_photoshop_toggle_exe.bat',
+          filename: `build_photoshop_${versionYear}_toggle_exe.bat`,
           label: 'Windows .EXE 단독 실행 파일 자동 빌더 (.bat)',
           badge: 'EXE 빌더',
           desc: 'Windows 기본 내장 .NET C# 컴파일러를 구동하여 바탕화면에 100% 무결점 단독 실행 파일(Photoshop_Language_Toggle.exe)을 생성합니다. 콘솔 창 없이 0.05초 만에 윈도우 팝업과 함께 전환됩니다.',
@@ -414,7 +416,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
       case 'hta_gui':
         return {
           content: generateWindowsHtaApp(folderPath, datFile),
-          filename: 'Photoshop_Language_Switcher_GUI.hta',
+          filename: `Photoshop_${versionYear}_Language_Switcher_GUI.hta`,
           label: '독립형 데스크톱 HTML GUI 애플리케이션 (.hta)',
           badge: '설치 불필요 GUI',
           desc: `검은 콘솔창 없이 세련된 독립 GUI 창으로 실행되며, 버튼 클릭으로 현재 상태 확인 및 ${currentLocalePreset.name}/영 전환이 가능합니다.`,
@@ -422,7 +424,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
       case 'english_bat':
         return {
           content: generateToEnglishBat(folderPath, datFile),
-          filename: 'photoshop_switch_to_english.bat',
+          filename: `photoshop_${versionYear}_switch_to_english.bat`,
           label: '영어로 변경 배치 스크립트 (.bat)',
           badge: '영어 전용',
           desc: '언어 데이터 파일에 old_ 접두사를 붙여 영문 포토샵 모드로 강제 설정합니다.',
@@ -430,7 +432,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
       case 'korean_bat':
         return {
           content: generateToKoreanBat(folderPath, datFile),
-          filename: `photoshop_switch_to_${config.locale || 'korean'}.bat`,
+          filename: `photoshop_${versionYear}_switch_to_${config.locale || 'korean'}.bat`,
           label: `${currentLocalePreset.name}로 변경 배치 스크립트 (.bat)`,
           badge: `${currentLocalePreset.name} 복구`,
           desc: `old_ 접두사를 제거하여 원래의 ${currentLocalePreset.name} 포토샵 모드로 복원합니다.`,
@@ -438,7 +440,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
       case 'powershell':
         return {
           content: generatePowerShellScript(folderPath, datFile),
-          filename: 'photoshop_toggle.ps1',
+          filename: `photoshop_${versionYear}_toggle.ps1`,
           label: '파워셸 스크립트 (.ps1)',
           badge: 'PowerShell',
           desc: '현대적인 Windows PowerShell 터미널 환경을 위한 표준 관리 스크립트입니다.',
@@ -446,7 +448,7 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
       case 'macos':
         return {
           content: generateMacShellScript(folderPath, datFile),
-          filename: 'photoshop_toggle_mac.sh',
+          filename: `photoshop_${versionYear}_toggle_mac.sh`,
           label: 'Mac 터미널 스크립트 (.sh)',
           badge: 'macOS',
           desc: 'Mac OS 포토샵 환경을 위한 셸 스크립트입니다.',
@@ -454,10 +456,18 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
       case 'vbs_gui':
         return {
           content: generateVbsGuiScript(folderPath, datFile),
-          filename: 'photoshop_toggle_gui.vbs',
+          filename: `photoshop_${versionYear}_toggle_gui.vbs`,
           label: 'VBScript 무음 GUI 런처 (.vbs)',
           badge: '⚠️ 오진 주의',
           desc: '검은 창 없이 Windows MsgBox를 띄우지만, VBS 스크립트 특성상 일부 백신(V3, 알약, Defender)에서 오진될 수 있습니다.',
+        };
+      default:
+        return {
+          content: generateSmartToggleBat(folderPath, datFile),
+          filename: `photoshop_${versionYear}_toggle_language.bat`,
+          label: '포토샵 스마트 자동 토글 (.bat)',
+          badge: '기본',
+          desc: '포토샵 언어를 자동으로 안전 전환합니다.',
         };
     }
   };
@@ -521,17 +531,17 @@ export const ScriptGenerator: React.FC<ScriptGeneratorProps> = ({ config }) => {
     const suite = isIllustrator
       ? [
           { name: 'illustrator_multi_version_auto_scanner.bat', content: generateIllustratorAutoDetectMultiVersionBat() },
-          { name: 'illustrator_toggle_language.bat', content: generateIllustratorSmartToggleBat(folderPath) },
-          { name: 'create_illustrator_desktop_shortcut.bat', content: generateIllustratorShortcutBat(folderPath) },
-          { name: 'illustrator_switch_to_english.bat', content: generateIllustratorToEnglishBat(folderPath) },
-          { name: 'illustrator_switch_to_korean.bat', content: generateIllustratorToKoreanBat(folderPath) },
+          { name: `illustrator_${versionYear}_toggle_language.bat`, content: generateIllustratorSmartToggleBat(folderPath) },
+          { name: `create_illustrator_${versionYear}_desktop_shortcut.bat`, content: generateIllustratorShortcutBat(folderPath) },
+          { name: `illustrator_${versionYear}_switch_to_english.bat`, content: generateIllustratorToEnglishBat(folderPath) },
+          { name: `illustrator_${versionYear}_switch_to_korean.bat`, content: generateIllustratorToKoreanBat(folderPath) },
         ]
       : [
           { name: 'photoshop_multi_version_auto_scanner.bat', content: generateAutoDetectMultiVersionBat() },
-          { name: 'photoshop_toggle_language.bat', content: generateSmartToggleBat(folderPath, datFile) },
-          { name: 'create_desktop_shortcut.bat', content: generateDesktopShortcutBat(folderPath, datFile) },
-          { name: 'photoshop_switch_to_english.bat', content: generateToEnglishBat(folderPath, datFile) },
-          { name: 'photoshop_switch_to_korean.bat', content: generateToKoreanBat(folderPath, datFile) },
+          { name: `photoshop_${versionYear}_toggle_language.bat`, content: generateSmartToggleBat(folderPath, datFile) },
+          { name: `create_photoshop_${versionYear}_desktop_shortcut.bat`, content: generateDesktopShortcutBat(folderPath, datFile) },
+          { name: `photoshop_${versionYear}_switch_to_english.bat`, content: generateToEnglishBat(folderPath, datFile) },
+          { name: `photoshop_${versionYear}_switch_to_korean.bat`, content: generateToKoreanBat(folderPath, datFile) },
         ];
 
     suite.forEach((file, index) => {
